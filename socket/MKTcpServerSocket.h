@@ -9,7 +9,7 @@ class MKTcpServerSocket : public MKTcpSocket
     MKTcpServerSocket();
     ~MKTcpServerSocket();
 
-    bool Bind(uint16_t portNum);
+    bool Bind(uint16_t port_num);
     int Accept();
     bool Listen();
     

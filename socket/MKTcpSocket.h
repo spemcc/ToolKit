@@ -12,7 +12,7 @@ class MKTcpSocket : public MKSocketInterface {
     MKTcpSocket();
     virtual ~MKTcpSocket();
     
-    virtual bool Read(std::vector<uint8_t>* output, int numBytes);
+    virtual bool Read(std::vector<uint8_t>* output, int num_bytes);
     virtual bool Write(const std::vector<uint8_t>& data);
     virtual bool Close();
     virtual void set_socket(int socket_fd);
