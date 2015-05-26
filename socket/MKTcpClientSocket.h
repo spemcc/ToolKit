@@ -4,14 +4,14 @@
 #ifndef _MKTCPCLIENTSOCKET_
 #define _MKTCPCLIENTSOCKET_
 
-#include "MKTcpSocketImp.h"
+#include "MKTcpSocket.h"
 
-class MKTcpClientSocket : public MKTcpSocketImp {
+class MKTcpClientSocket : public MKTcpSocket 
+{
 	public:
 		MKTcpClientSocket();
 		~MKTcpClientSocket();
-    bool Connect(std::string ip, uint16_t portNum, bool IPV6=false);
-  private:
+    bool Connect(std::string ip, uint16_t port_num, bool IPV6=false);
 
 };
 

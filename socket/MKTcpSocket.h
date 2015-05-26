@@ -7,23 +7,23 @@
 #include "MKSocketInterface.h"
 #include <string>
 
-class MKTcpSocketImp : public MKSocketInterface {
+class MKTcpSocket : public MKSocketInterface {
   public:
-    MKTcpSocketImp();
-    virtual ~MKTcpSocketImp();
+    MKTcpSocket();
+    virtual ~MKTcpSocket();
     
     virtual bool Read(std::vector<uint8_t>* output, int numBytes);
     virtual bool Write(const std::vector<uint8_t>& data);
     virtual bool Close();
-    virtual void SetSocket(int socketfd);
+    virtual void set_socket(int socket_fd);
 
-    virtual bool Bind(uint16_t portNum);
+    virtual bool Bind(uint16_t port_num);
     virtual bool Listen();
     virtual int  Accept();
-    virtual bool Connect(std::string ip, uint16_t portNum, bool IPV6=false);
+    virtual bool Connect(std::string ip, uint16_t port_num, bool IPV6=false);
  
   protected:
-    int socketfd;
+    int socket_fd_;
 };
 
 

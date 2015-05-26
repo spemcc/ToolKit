@@ -15,12 +15,12 @@
 MKTcpClientSocket::MKTcpClientSocket() { }
 MKTcpClientSocket::~MKTcpClientSocket() { }
 
-bool MKTcpClientSocket::Connect(std::string ip, uint16_t portNum, bool IPV6)
+bool MKTcpClientSocket::Connect(std::string ip, uint16_t port_num, bool IPV6)
 {
   struct addrinfo hints;
   struct addrinfo * res;
-  std::stringstream portStringStream;
-  portStringStream << portNum;
+  std::stringstream port_string_stream;
+  port_string_stream << port_num;
   memset(&hints,0,sizeof(hints));
 
   if(IPV6)
@@ -30,7 +30,7 @@ bool MKTcpClientSocket::Connect(std::string ip, uint16_t portNum, bool IPV6)
 
   hints.ai_socktype = SOCK_STREAM;
 
-  if((getaddrinfo(ip.c_str(),portStringStream.str().c_str(), &hints, &res) == -1 ))
+  if((getaddrinfo(ip.c_str(),port_string_stream.str().c_str(), &hints, &res) == -1 ))
   {
     std::cout << "getaddrinfo failed" << std::endl;
     return false;
@@ -38,7 +38,7 @@ bool MKTcpClientSocket::Connect(std::string ip, uint16_t portNum, bool IPV6)
 
   for(; res != NULL; res = res->ai_next) 
   {
-    if ((socketfd = socket(res->ai_family, res->ai_socktype, res->ai_protocol)) == -1) 
+    if ((socket_fd_ = socket(res->ai_family, res->ai_socktype, res->ai_protocol)) == -1) 
     {
       std::cout << "socket error, trying next.." << std::endl;
       continue;
@@ -46,7 +46,7 @@ bool MKTcpClientSocket::Connect(std::string ip, uint16_t portNum, bool IPV6)
     break;
   }
 
-  if(socketfd == -1)
+  if(socket_fd_ == -1)
   {
     std::cout << "socket error" << std::endl;
     freeaddrinfo(res);
@@ -77,7 +77,7 @@ bool MKTcpClientSocket::Connect(std::string ip, uint16_t portNum, bool IPV6)
   inet_ntop(res->ai_family, addr,ip_address, sizeof(ip_address));
   std::cout << ip_address << std::endl;
 
-  if(connect(socketfd,res->ai_addr,res->ai_addrlen)== -1)
+  if(connect(socket_fd_,res->ai_addr,res->ai_addrlen)== -1)
   {
     std::cerr<< "CONNECT ERROR" << std::endl;
     perror("connect");

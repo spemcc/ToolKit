@@ -1,9 +1,9 @@
 #ifndef _MKTCPSERVERSOCKET_
 #define _MKTCPSERVERSOCKET_
 
-#include "MKTcpSocketImp.h"
+#include "MKTcpSocket.h"
 
-class MKTcpServerSocket : public MKTcpSocketImp 
+class MKTcpServerSocket : public MKTcpSocket
 {
   public: 
     MKTcpServerSocket();

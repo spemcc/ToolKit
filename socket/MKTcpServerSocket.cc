@@ -12,13 +12,13 @@
 MKTcpServerSocket::MKTcpServerSocket() { }
 MKTcpServerSocket::~MKTcpServerSocket() { }
 
-bool MKTcpServerSocket::Bind(uint16_t portNum)
+bool MKTcpServerSocket::Bind(uint16_t port_num)
 {
   struct addrinfo hints;
   struct addrinfo* res;
   char name[128];
-  std::stringstream portStringStream;
-  portStringStream << portNum;
+  std::stringstream port_string_stream;
+  port_string_stream << port_num;
 
   memset(&hints, 0, sizeof(hints));
   hints.ai_family = AF_UNSPEC;
@@ -30,7 +30,7 @@ bool MKTcpServerSocket::Bind(uint16_t portNum)
     return false;
   }
   struct hostent* hostName = gethostbyname(name);
-  if((getaddrinfo(hostName->h_name, portStringStream.str().c_str(), &hints, &res)) == -1)
+  if((getaddrinfo(hostName->h_name, port_string_stream.str().c_str(), &hints, &res)) == -1)
   {
     perror("getaddrinfo");
     return false;
@@ -38,24 +38,24 @@ bool MKTcpServerSocket::Bind(uint16_t portNum)
 
   for(; res != NULL; res = res->ai_next) 
   {
-    if ((socketfd = socket(res->ai_family, res->ai_socktype, res->ai_protocol)) == -1) 
+    if ((socket_fd_ = socket(res->ai_family, res->ai_socktype, res->ai_protocol)) == -1) 
     {
       std::cout << "socket error, trying next.." << std::endl;
       continue;
     }
     break;
   }
-  if(socketfd == -1)
+  if(socket_fd_ == -1)
   {
     perror("socket");
     freeaddrinfo(res);
     return false;
   }
 
-  if(::bind(socketfd, res->ai_addr, res->ai_addrlen))
+  if(::bind(socket_fd_, res->ai_addr, res->ai_addrlen))
   {
     perror("bind");
-    std::cout << "bind on port " << portNum << " failed. " << std::endl;
+    std::cout << "bind on port " << port_num << " failed. " << std::endl;
     freeaddrinfo(res);
     return false;
   }
@@ -67,21 +67,21 @@ bool MKTcpServerSocket::Bind(uint16_t portNum)
 
 int MKTcpServerSocket::Accept()
 {
-  struct sockaddr_storage storeAddr;
-  socklen_t clientSocketLenght = sizeof(storeAddr);
+  struct sockaddr_storage store_addr;
+  socklen_t client_socket_length = sizeof(store_addr);
 
-  int clientfd = accept(socketfd, (struct sockaddr*)&storeAddr, &clientSocketLenght);
-  if(clientfd == -1)
+  int client_fd = accept(socket_fd_, (struct sockaddr*)&store_addr, &client_socket_length);
+  if(client_fd == -1)
   {
     perror("accept");
     return -1;
   }
-  return clientfd;
+  return client_fd;
 }
 
 bool MKTcpServerSocket::Listen()
 {
-  if(listen(socketfd, 1) == -1)
+  if(listen(socket_fd_, 1) == -1)
   {
     perror("listen");
     return false;
