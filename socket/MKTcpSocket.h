@@ -1,8 +1,8 @@
 /* Created on: Mon Jul 14 19:14:16 2014 */
 /* Author: smccrear */
 
-#ifndef _MKTCPSOCKETIMP_
-#define _MKTCPSOCKETIMP_
+#ifndef _MKTCPSOCKET_
+#define _MKTCPSOCKET_
 
 #include "MKSocketInterface.h"
 #include <string>
@@ -27,5 +27,5 @@ class MKTcpSocket : public MKSocketInterface {
 };
 
 
-#endif  /* _MKTCPSOCKETIMP_ */
+#endif  /* _MKTCPSOCKET_ */
 
