@@ -1,5 +1,4 @@
-
-#include "MKTcpServerSocket.h"
+#include "tcp_server_socket.h"
 
 #include <arpa/inet.h>
 #include <unistd.h>
@@ -9,10 +8,10 @@
 #include <iostream>
 #include <sstream>
 
-MKTcpServerSocket::MKTcpServerSocket() { }
-MKTcpServerSocket::~MKTcpServerSocket() { }
+TcpServerSocket::TcpServerSocket() { }
+TcpServerSocket::~TcpServerSocket() { }
 
-bool MKTcpServerSocket::Bind(uint16_t port_num)
+bool TcpServerSocket::Bind(uint16_t port_num)
 {
   struct addrinfo hints;
   struct addrinfo* res;
@@ -65,7 +64,7 @@ bool MKTcpServerSocket::Bind(uint16_t port_num)
   return true;
 }
 
-int MKTcpServerSocket::Accept()
+int TcpServerSocket::Accept()
 {
   struct sockaddr_storage store_addr;
   socklen_t client_socket_length = sizeof(store_addr);
@@ -79,7 +78,7 @@ int MKTcpServerSocket::Accept()
   return client_fd;
 }
 
-bool MKTcpServerSocket::Listen()
+bool TcpServerSocket::Listen()
 {
   if(listen(socket_fd_, 1) == -1)
   {

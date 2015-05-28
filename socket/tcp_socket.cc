@@ -1,4 +1,4 @@
-#include "MKTcpClientSocket.h"
+#include "tcp_socket.h"
 
 #include <sys/socket.h>
 #include <arpa/inet.h>
@@ -10,12 +10,10 @@
 #include <cassert>
 #include <iostream>
 
+TcpSocket::TcpSocket() { }
+TcpSocket::~TcpSocket() { }
 
-
-MKTcpClientSocket::MKTcpClientSocket() { }
-MKTcpClientSocket::~MKTcpClientSocket() { }
-
-bool MKTcpClientSocket::Connect(std::string ip, uint16_t port_num, bool IPV6)
+bool TcpSocket::Connect(std::string ip, uint16_t port_num, bool IPV6)
 {
   struct addrinfo hints;
   struct addrinfo * res;
