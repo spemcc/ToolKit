@@ -10,10 +10,10 @@
 #include <cassert>
 #include <iostream>
 
-TcpSocket::TcpSocket() { }
-TcpSocket::~TcpSocket() { }
+network::TcpSocket::TcpSocket() { }
+network::TcpSocket::~TcpSocket() { }
 
-bool TcpSocket::Connect(std::string ip, uint16_t port_num, bool IPV6)
+bool network::TcpSocket::Connect(std::string ip, uint16_t port_num, bool IPV6)
 {
   struct addrinfo hints;
   struct addrinfo * res;

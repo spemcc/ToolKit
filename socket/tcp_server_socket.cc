@@ -8,10 +8,10 @@
 #include <iostream>
 #include <sstream>
 
-TcpServerSocket::TcpServerSocket() { }
-TcpServerSocket::~TcpServerSocket() { }
+network::TcpServerSocket::TcpServerSocket() { }
+network::TcpServerSocket::~TcpServerSocket() { }
 
-bool TcpServerSocket::Bind(uint16_t port_num)
+bool network::TcpServerSocket::Bind(uint16_t port_num)
 {
   struct addrinfo hints;
   struct addrinfo* res;
@@ -64,7 +64,7 @@ bool TcpServerSocket::Bind(uint16_t port_num)
   return true;
 }
 
-int TcpServerSocket::Accept()
+int network::TcpServerSocket::Accept()
 {
   struct sockaddr_storage store_addr;
   socklen_t client_socket_length = sizeof(store_addr);
@@ -78,7 +78,7 @@ int TcpServerSocket::Accept()
   return client_fd;
 }
 
-bool TcpServerSocket::Listen()
+bool network::TcpServerSocket::Listen()
 {
   if(listen(socket_fd_, 1) == -1)
   {

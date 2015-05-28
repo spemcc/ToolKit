@@ -10,6 +10,8 @@
 #include <assert.h>
 
 
+namespace network {
+
 class TcpSocketInterface {
 	
   public:
@@ -52,7 +54,7 @@ class TcpSocketInterface {
   protected:
     int32_t socket_fd_;
 };
-
+}
 
 #endif  /* _TCPSOCKETINTERFACE_ */
 

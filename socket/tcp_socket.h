@@ -6,6 +6,8 @@
 
 #include "tcp_socket_interface.h"
 
+namespace network {
+
 class TcpSocket : public TcpSocketInterface
 {
 	public:
@@ -14,5 +16,6 @@ class TcpSocket : public TcpSocketInterface
     bool Connect(std::string ip, uint16_t port_num, bool IPV6=false);
 
 };
+}
 
 #endif  /* _TCPSOCKET_ */

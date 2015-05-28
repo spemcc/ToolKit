@@ -3,6 +3,8 @@
 
 #include "tcp_socket_interface.h"
 
+namespace network {
+
 class TcpServerSocket : public TcpSocketInterface
 {
   public: 
@@ -16,5 +18,6 @@ class TcpServerSocket : public TcpSocketInterface
   private:
 
 };
+}
 
 #endif /* _TCPSERVERSOCKET_ */
