@@ -13,7 +13,7 @@ class TcpSocket : public TcpSocketInterface
 	public:
 		TcpSocket();
 		~TcpSocket();
-    bool Connect(std::string ip, uint16_t port_num, bool IPV6=false);
+    bool Connect(std::string ip, uint16_t port_num, bool ipv6=false);
 
 };
 }

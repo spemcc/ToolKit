@@ -13,22 +13,22 @@
 network::TcpSocket::TcpSocket() { }
 network::TcpSocket::~TcpSocket() { }
 
-bool network::TcpSocket::Connect(std::string ip, uint16_t port_num, bool IPV6)
+bool network::TcpSocket::Connect(std::string ip, uint16_t port_num, bool ipv6)
 {
   struct addrinfo hints;
-  struct addrinfo * res;
+  struct addrinfo* res;
   std::stringstream port_string_stream;
   port_string_stream << port_num;
   memset(&hints,0,sizeof(hints));
 
-  if(IPV6)
+  if(ipv6)
     hints.ai_family = AF_INET6; 
   else
     hints.ai_family = AF_INET; 
 
   hints.ai_socktype = SOCK_STREAM;
 
-  if((getaddrinfo(ip.c_str(),port_string_stream.str().c_str(), &hints, &res) == -1 ))
+  if((getaddrinfo(ip.c_str(), port_string_stream.str().c_str(), &hints, &res) == -1 ))
   {
     std::cout << "getaddrinfo failed" << std::endl;
     return false;
@@ -52,27 +52,27 @@ bool network::TcpSocket::Connect(std::string ip, uint16_t port_num, bool IPV6)
   }
 
   char ip_address[INET6_ADDRSTRLEN];
-  void * addr;
+  void* addr;
 
   if(res->ai_family == AF_INET)
   {
-    if(IPV6)
-      assert("IPV6 flag was set true but got IPV4 socket");
+    if(ipv6)
+      assert("ipv6 flag was set true but got ipv4 socket");
 
-    struct sockaddr_in * ipv4 = (struct sockaddr_in *) res->ai_addr;
+    struct sockaddr_in* ipv4 = (struct sockaddr_in *) res->ai_addr;
     addr = &(ipv4->sin_addr);
   }
   else
   {
-    if(!IPV6)
-      assert("IPV4 flag was set true but got IPV6 socket");
+    if(!ipv6)
+      assert("ipv4 flag was set true but got ipv6 socket");
 
-    struct sockaddr_in6 * ipv6 = (struct sockaddr_in6 *) res->ai_addr;
+    struct sockaddr_in6* ipv6 = (struct sockaddr_in6 *) res->ai_addr;
     addr = &(ipv6->sin6_addr);
   }
 
   //network to presentation - used to get IP address in printable form
-  inet_ntop(res->ai_family, addr,ip_address, sizeof(ip_address));
+  inet_ntop(res->ai_family, addr, ip_address, sizeof(ip_address));
   std::cout << ip_address << std::endl;
 
   if(connect(socket_fd_,res->ai_addr,res->ai_addrlen)== -1)
