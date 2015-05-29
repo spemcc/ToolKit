@@ -20,10 +20,10 @@ class TcpSocketInterface {
 
     virtual bool Read(std::vector<uint8_t>* output,const uint32_t& num_bytes)
     {
-      int bytes_recieved = 0;
-      int total_bytes_recieved = 0;
+      int32_t bytes_recieved = 0;
+      int32_t total_bytes_recieved = 0;
 
-      while(total_bytes_recieved != num_bytes)
+      while(total_bytes_recieved != static_cast<int32_t>(num_bytes))
       {
         bytes_recieved = recv(socket_fd_, &(output->at(0)), num_bytes, 0);
         if(bytes_recieved == -1)
@@ -35,9 +35,9 @@ class TcpSocketInterface {
 
     virtual bool Write(const std::vector<uint8_t>& data)
     {
-      int num_bytes = data.size();
-      int bytesSent = 0;
-      int totalBytesSent= 0;
+      int32_t num_bytes = data.size();
+      int32_t bytesSent = 0;
+      int32_t totalBytesSent= 0;
 
       while(totalBytesSent!= num_bytes)
       {
