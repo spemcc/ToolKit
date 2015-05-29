@@ -11,7 +11,7 @@
 network::TcpServerSocket::TcpServerSocket() { }
 network::TcpServerSocket::~TcpServerSocket() { }
 
-bool network::TcpServerSocket::Bind(uint16_t port_num)
+bool network::TcpServerSocket::Bind(const uint16_t& port_num)
 {
   struct addrinfo hints;
   struct addrinfo* res;
@@ -58,6 +58,7 @@ bool network::TcpServerSocket::Bind(uint16_t port_num)
     freeaddrinfo(res);
     return false;
   }
+  std::cout << "Bind Success: " << name << ":" << port_num << std::endl;
  
   freeaddrinfo(res);
 

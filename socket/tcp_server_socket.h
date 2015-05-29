@@ -11,7 +11,7 @@ class TcpServerSocket : public TcpSocketInterface
     TcpServerSocket();
     ~TcpServerSocket();
 
-    bool Bind(uint16_t port_num);
+    bool Bind(const uint16_t& port_num);
     int Accept();
     bool Listen();
     

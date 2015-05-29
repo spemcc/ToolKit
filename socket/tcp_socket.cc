@@ -13,7 +13,7 @@
 network::TcpSocket::TcpSocket() { }
 network::TcpSocket::~TcpSocket() { }
 
-bool network::TcpSocket::Connect(std::string ip, uint16_t port_num, bool ipv6)
+bool network::TcpSocket::Connect(const std::string& ip,const uint16_t& port_num,const bool& ipv6)
 {
   struct addrinfo hints;
   struct addrinfo* res;
