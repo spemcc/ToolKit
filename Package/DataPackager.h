@@ -40,7 +40,7 @@ private:
     void PackTypeToSocketData(uint32_t arg)
     {
         uint32_t val = htonl(arg);
-        socketData->at(currentByte++)   = (val >> 24) & 0xFF;
+        socketData->at(currentByte++) = (val >> 24) & 0xFF;
         socketData->at(currentByte++) = (val >> 16) & 0xFF;
         socketData->at(currentByte++) = (val >> 8) & 0xFF;
         socketData->at(currentByte++) = val & 0xFF;
@@ -49,7 +49,7 @@ private:
     void PackTypeToSocketData(int32_t arg)
     {
         int32_t val = htonl(arg);
-        socketData->at(currentByte++)   = (val >> 24) & 0xFF;
+        socketData->at(currentByte++) = (val >> 24) & 0xFF;
         socketData->at(currentByte++) = (val >> 16) & 0xFF;
         socketData->at(currentByte++) = (val >> 8) & 0xFF;
         socketData->at(currentByte++) = val & 0xFF;
@@ -64,6 +64,7 @@ private:
         socketData->at(currentByte++) = (val >> 24) & 0xFF;
         socketData->at(currentByte++) = (val >> 16) & 0xFF;
         socketData->at(currentByte++) = (val >> 8) & 0xFF;
+        socketData->at(currentByte++) = val & 0xFF;
     }
 
     void PackTypeToSocketData(uint64_t arg)
@@ -82,7 +83,7 @@ private:
     void PackTypeToSocketData(uint16_t arg)
     {
         uint16_t val = htons(arg);
-        socketData->at(currentByte++)   = (val >> 8) & 0xFF;
+        socketData->at(currentByte++) = (val >> 8) & 0xFF;
         socketData->at(currentByte++) = val & 0xFF;
     }
 };
@@ -124,6 +125,7 @@ private:
         socketData->at(currentByte++) = (val >> 24) & 0xFF;
         socketData->at(currentByte++) = (val >> 16) & 0xFF;
         socketData->at(currentByte++) = (val >> 8) & 0xFF;
+        socketData->at(currentByte++) = val & 0xFF;
     }
 
     void PackTypeToSocketData(uint64_t arg)
