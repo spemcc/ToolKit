@@ -4,3 +4,13 @@
 
 *.gch
 *.out
+
+
+
+## Node Dependencies ##
+node_modules/
+
+
+## local file for testing ##
+test.js
+
